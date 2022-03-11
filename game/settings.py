@@ -20,3 +20,23 @@ class Settings:
         self.bullet_height = 15
         self.bullet_color = (255, 0, 204)
         self.bullets_allowed = 3
+
+class SidewayShooterSettings:
+    """A class to store all setiings for Sideway Shooter."""
+
+    def __init__(self) -> None:
+        """Initialise the game's settings"""
+        # Screen settings
+        self.screen_width = 1280
+        self.screen_height = 720
+        self.bg_color = (99,102,106)
+         
+        # rocket settings
+        self.rocket_speed = 2.5
+
+        # Bullet settings
+        self.bullet_speed = 1.0
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = (152, 251, 152)
+        self.bullets_allowed = 5
