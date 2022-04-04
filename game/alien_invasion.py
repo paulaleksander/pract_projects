@@ -33,7 +33,8 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.ufo.update()
-            self._update_bullets()         
+            self._update_bullets()
+            self._update_aliens()         
             self._update_screen()         
             
             # Make the most recently drawn screen visible.
@@ -87,7 +88,20 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+        self._check_bullet_alien_collisions()
     
+    def _check_bullet_alien_collisions(self):
+        """Respond to bullet-alien collisions."""
+        # Remove any bullets and aliens that have collided.
+        
+        collisions = pygame.sprite.groupcollide(
+                self.bullets, self.aliens, True, True)
+        
+        if not self.aliens:
+                # Destroy existing bullets and create new fleet.
+                self.bullets.empty()
+                self._create_fleet()
+        
     def _create_fleet(self):
         """Create the fleet of aliens."""
         # Create an alien and find the number of aliens in a row.
@@ -118,12 +132,32 @@ class AlienInvasion:
         self.aliens.add(alien)
 
     def _update_screen(self):
-        """Update image in the screen< and flip to the new screen"""
+        """Update image in the screen, and flip to the new screen"""
         self.screen.fill(self.settings.bg_color)
         self.ufo.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+    
+    def _check_fleet_edges(self):
+        """respond appropriately if any aliens have reached an edge."""
+        for alien in self.aliens.sprites():
+            self._change_fleet_directions()
+            break
+
+    def _change_fleet_directions(self):
+        """Drop the entire fleet and change the fleet direcrions."""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
+    
+    def _update_aliens(self):
+        """
+        Check if the fleet is at an edge,
+         then update the position of all aliens in the fleet.
+        """
+        self._check_fleet_edges()
+        self.aliens.update()
 
         pygame.display.flip()
 

@@ -15,14 +15,20 @@ class Settings:
         self.ufo_speed = 2
 
         # Bullet settings
-        self.bullet_speed = 1.0
+        self.bullet_speed = 5.0
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (255, 0, 204)
-        self.bullets_allowed = 3
+        self.bullets_allowed = 25
+
+        # Alien Settings
+        self.alien_speed = 1.0
+        self.fleet_drop_speed = 1.0
+        # fleet_directions of 1 represents right; -1 represents left.
+        self.fleet_direction = 1
 
 class SidewayShooterSettings:
-    """A class to store all setiings for Sideway Shooter."""
+    """A class to store all setings for Sideway Shooter."""
 
     def __init__(self) -> None:
         """Initialise the game's settings"""
@@ -35,8 +41,14 @@ class SidewayShooterSettings:
         self.rocket_speed = 2.5
 
         # Bullet settings
-        self.bullet_speed = 1.0
+        self.bullet_speed = 5.0
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (152, 251, 152)
-        self.bullets_allowed = 5
+        self.bullets_allowed = 25
+
+        # Alien Settings
+        self.alien_speed = 1.0
+        self.fleet_drop_speed = 1.0
+        # fleet_directions of 1 represents right; -1 represents left.
+        self.fleet_direction = -1
