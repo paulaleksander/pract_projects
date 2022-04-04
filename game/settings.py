@@ -10,9 +10,11 @@ class Settings:
 
         # Ship settings
         self.ship_speed = 1.5
+        self.ship_limit = 3
 
         # UFO settings
         self.ufo_speed = 2
+        self.ufo_limit = 3
 
         # Bullet settings
         self.bullet_speed = 5.0
