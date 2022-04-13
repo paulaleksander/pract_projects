@@ -45,14 +45,9 @@ class SidewayAlien(Sprite):
         self.image = pygame.image.load('images/ufo.bmp')
         self.image = pygame.transform.rotate(self.image, 90)
         self.rect =  self.image.get_rect()
-
-        # Start each new alien near the top left of the screen.
-        self.rect.x = self.rect.width
-        self.rect.y = self.rect.height
-
-        # Store the alien's exact vertical position.
-        self.y = float(self.rect.y)
-
+        self.rect.topright = ((1280 - self.rect.width), 
+                                (720 - self.rect.height))
+    
     def check_edges(self):
         """Return True if alien is at edge of screen."""
         screen_rect = self.screen.get_rect()
@@ -60,7 +55,9 @@ class SidewayAlien(Sprite):
             return True
     
     def update(self):
-        """Move the alien to the left"""
-        self.y += (self.settings.alien_speed * 
-                        self.settings.fleet_direction)
-        self.rect.y = self.y
+        """Move the alien to the top or bottom."""
+        self.rect.top -= (self.settings.alien_speed *
+                            self.settings.fleet_direction)
+
+        # Store the alien's exact vertical position.
+        self.x = float(self.rect.top)

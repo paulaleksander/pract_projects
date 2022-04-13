@@ -41,6 +41,7 @@ class SidewayShooterSettings:
          
         # rocket settings
         self.rocket_speed = 2.5
+        self.rocket_limit = 3
 
         # Bullet settings
         self.bullet_speed = 5.0
@@ -53,4 +54,4 @@ class SidewayShooterSettings:
         self.alien_speed = 1.0
         self.fleet_drop_speed = 1.0
         # fleet_directions of 1 represents right; -1 represents left.
-        self.fleet_direction = -1
+        self.fleet_direction = 1
