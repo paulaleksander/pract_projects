@@ -5,6 +5,7 @@
 *.ali
 
 __pycache__/
-learning_log/
+web_app/learning_log/
 pz_venv/
 b_venv/
+
