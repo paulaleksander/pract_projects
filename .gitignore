@@ -6,6 +6,6 @@
 
 __pycache__/
 web_app/learning_log/
-pz_venv/
-b_venv/
+web_app/pizzeria/pz_venv/
+web_app/blog/b_venv/
 
