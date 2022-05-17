@@ -1,0 +1,9 @@
+{% extends 'first_blog/base.html' %}
+
+{% block content %}
+
+  <p>Edit post:
+      <a href="{% url 'first_blog:edit_post' post.id %}">{{ post }}</a>
+  </p>
+
+{% endblock content %}
