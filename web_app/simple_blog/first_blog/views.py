@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from .models import BlogPost
@@ -6,7 +6,7 @@ from .forms import BlogPostForm
 
 def index(request):
     """ The home page that shows all First Blog post in chronological order."""
-    posts = BlogPost.objects.filter(owner=request.user).order_by('date_added')
+    posts = BlogPost.objects.order_by('date_added')
     context = {'posts': posts}
     return render(request, 'first_blog/index.html', context)
 
@@ -37,7 +37,7 @@ def new_post(request):
 def post(request, post_id):
     """Show a single post."""
     #check_post_owner(request)
-    post = BlogPost.objects.get(id=post_id, owner=request.user)
+    post = get_object_or_404(id=post_id, owner=request.user)
     context = {'post': post}
     return render(request, 'first_blog/post.html', context)
 
