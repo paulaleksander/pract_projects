@@ -10,7 +10,7 @@ def index(request):
     context = {'posts': posts}
     return render(request, 'first_blog/index.html', context)
 
-def check_post_owner(request):
+#def check_post_owner(request):
     # Make sure the post belongs to the current user.
     if BlogPost.owner != request.user:
         raise Http404
@@ -36,20 +36,16 @@ def new_post(request):
 @login_required
 def post(request, post_id):
     """Show a single post."""
+    #check_post_owner(request)
     post = BlogPost.objects.get(id=post_id, owner=request.user)
-    
-    check_post_owner(request)
-    
     context = {'post': post}
     return render(request, 'first_blog/post.html', context)
 
 @login_required
 def edit_post(request, post_id):
     """Edit an existing post."""
+    #check_post_owner(request)
     post = BlogPost.objects.get(id=post_id, owner=request.user)
-    
-    check_post_owner(request)
-    
     if request.method != 'POST':
         form = BlogPostForm(instance=post)
     else:

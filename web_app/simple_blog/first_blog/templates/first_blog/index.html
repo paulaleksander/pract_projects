@@ -1,19 +1,26 @@
 {% extends "first_blog/base.html" %}
 
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Daily posts about main thoughts.</h1>
+
+    <p class="lead">What happends today? </p>
+
+    <a class="btn btn-lg, btn-primary" href="{% url 'first_blog:new_post' %}"
+      role="button">Add a new post &raquo;</a>
+
+  </div>
+
+{% endblock page_header %}
+
 {% block content %}
-
-  <p>Daily posts about main thoughts.</p>
-
-  <ul>
-    {% for post in posts %}
-      <li>
-        <a href="{% url 'first_blog:post' post.id %}">{{ post }}</a>
-      </li>
-    {% empty %}
-      <li>No posts added yet.</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'first_blog:new_post' %}">Add a new post</a>
-  
-
-{% endblock content %}
+    <ul>
+      {% for post in posts %}
+        <li><h3>
+          <a href="{% url 'first_blog:post' post.id %}">{{ post }}</a>
+        </h3></li>
+      {% empty %}
+        <li><h3>No posts have been added yet.</h3></li>
+      {% endfor %}
+    </ul>
+  {% endblock content %}

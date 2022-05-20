@@ -1,9 +1,16 @@
 {% extends 'first_blog/base.html' %}
 
+{% block page_header %}
+<h3>{{ post }}</h3>
+{% endblock page_header %}
+
 {% block content %}
 
-  <p>Edit post:
-      <a href="{% url 'first_blog:edit_post' post.id %}">{{ post }}</a>
-  </p>
-
+  <div class="card mb-3">
+    <h4 class="card-header">
+    {{ post.date_added|date:'M d, Y H:i' }}
+    <small><a href="{% url 'first_blog:edit_post' post.id %}">
+    edit post</a></small>
+    </h4>
+  </div>
 {% endblock content %}
